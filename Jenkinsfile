@@ -1,14 +1,28 @@
 pipeline {
   agent any
   tools {
-        // Install the Maven version configured as "M3" and add it to the path.
         maven '3.8.6' 
     }
   stages {
-    stage ('Build') {
+    stage ('Clean') {
       steps {
-        sh 'mvn clean install -DskipTests'
+        sh 'mvn clean'
       }
+	  }
+	  stage ('Compile') {
+      steps {
+        sh 'mvn compile'
+      }
+	  }
+	  stage ('Test') {
+      steps {
+        sh 'mvn test'
+      }
+	  }
+	  stage ('Build') {
+      steps {
+        sh 'mvn package'
+	  }
     }
   }
 }
