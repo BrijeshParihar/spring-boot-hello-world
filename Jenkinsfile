@@ -5,7 +5,7 @@ pipeline {
         maven '3.8.6' 
     }
   stages {
-    stage ('Build') {
+    stage ('Build&Test') {
       steps {
         sh 'mvn clean install -DskipTests'
       }
